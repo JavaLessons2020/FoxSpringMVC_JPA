@@ -23,8 +23,12 @@ public class BookService {
     }
 
     //получение книги по id
-    public Book getBookId(int id) {
+    public Book getBookId(Integer id) {
         return bookJPA.getOne(id);
+    }
+
+    public  Book getById(Integer id){
+        return bookJPA.getBookById(id);
     }
 
     //получение всех данных с таблицы

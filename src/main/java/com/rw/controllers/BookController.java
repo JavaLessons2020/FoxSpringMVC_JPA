@@ -53,9 +53,12 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public String thisBook(@PathVariable("id") int id, Model model){
+    public String thisBook(@PathVariable("id") Integer id, Model model){
         //model.addAttribute("getBook", daoHib.getBookId(id));
-        model.addAttribute("getBook", bookService.getBookId(id));
+        //Book book = bookService.getBookId(id);
+        Book book = bookService.getById(id);
+        model.addAttribute("getBook", book);
+        //System.out.println(book);
         return "thisBook";
     }
 

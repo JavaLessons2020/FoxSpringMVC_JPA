@@ -1,10 +1,12 @@
 package com.rw.models;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/*@Proxy(lazy = false)*/
 @Entity
 @Table(name="books")
 public class Book {
@@ -25,11 +27,11 @@ public class Book {
 
     private String description;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "id_owner")
     private Owner owner;
 
-    @ManyToMany(mappedBy = "books")
+    @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
     Set<Buyer> buyers = new HashSet<>();
 
     public Book() {    }
